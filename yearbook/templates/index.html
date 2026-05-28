@@ -1,150 +1,98 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yearbook 2026 | Home</title>
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <!-- Google Fonts (Modern sans) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <h2>📘 Yearbook<span class="accent">2026</span></h2>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Students</a></li>
-                    <li><a href="#">Memories</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <a href="#" class="btn-outline">Login</a>
-                <a href="#" class="btn-primary">Join Yearbook</a>
-            </div>
-            <div class="mobile-toggle">☰</div>
-        </div>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <h1>Your story.<br>Our <span class="gradient-text">memory.</span></h1>
-                    <p class="hero-sub">Class of 2026 – celebrate every moment, every friendship, every laugh. The digital yearbook that stays with you forever.</p>
-                    <div class="hero-buttons">
-                        <a href="#" class="btn-primary btn-large">Explore the yearbook →</a>
-                        <a href="#" class="btn-outline btn-large">Add your memory</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="image-placeholder">
-                        <span>📸 Yearbook collage</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+{% block title %}Yearbook 2026 | Home{% endblock %}
 
-        <!-- Features / Highlights Section (dynamic later) -->
-        <section class="features">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Inside the yearbook</h2>
-                    <p>What makes this edition special</p>
-                </div>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">👥</div>
-                        <h3>Student profiles</h3>
-                        <p>Every face, every story. Discover your classmates' journeys.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🏆</div>
-                        <h3>Top moments</h3>
-                        <p>Relive the sports day, prom night, and unforgettable events.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💬</div>
-                        <h3>Memory wall</h3>
-                        <p>Leave a note, share a photo – build the collective album.</p>
-                    </div>
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Your story.<br>Our <span class="gradient-text">memories.</span></h1>
+                <p class="hero-sub">Class of 2026 – celebrate every moment, every friendship, every laugh. This digital yearbook captures your journey as Seniors at Cadmus Academies, preserved for generations to come.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary btn-large">Explore the yearbook</a>
+                    <a href="#" class="btn-outline btn-large">Add your memory</a>
                 </div>
             </div>
-        </section>
-
-        <!-- Recent memories preview (placeholder for dynamic loop) -->
-        <section class="memories-preview">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Recent memories</h2>
-                    <p>Latest from your classmates</p>
-                </div>
-                <div class="memories-grid">
-                    <!-- Replace with Django for loop later -->
-                    <div class="memory-card">
-                        <div class="memory-img placeholder-img"></div>
-                        <div class="memory-content">
-                            <h4>Science fair 2026</h4>
-                           <p>Amazing projects and crazy experiments! 🧪</p>
-                            <span class="memory-meta">– Sarah J., 2h ago</span>
-                        </div>
-                    </div>
-                    <div class="memory-card">
-                        <div class="memory-img placeholder-img"></div>
-                        <div class="memory-content">
-                            <h4>Last home game</h4>
-                            <p>Cheering loud until the final whistle. #spirit</p>
-                            <span class="memory-meta">– Marcus T., yesterday</span>
-                        </div>
-                    </div>
-                    <div class="memory-card">
-                        <div class="memory-img placeholder-img"></div>
-                        <div class="memory-content">
-                            <h4>Study group vibes</h4>
-                            <p>Finals are tough, but pizza and friends help.</p>
-                            <span class="memory-meta">– Emily C., 3 days ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="view-all">
-                    <a href="#" class="btn-outline">View all memories →</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-about">
-                <h3>📘 Yearbook2026</h3>
-                <p>Preserving our legacy, one pixel at a time.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick links</h4>
-                <ul>
-                    <li><a href="#">Students</a></li>
-                    <li><a href="#">Memories</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Follow us</h4>
-                <div class="social-icons">
-                    <a href="#">📷 IG</a>
-                    <a href="#">🐦 X</a>
-                    <a href="#">📘 FB</a>
+            <div class="hero-image">
+                <div class="image-placeholder">
+                    <span>📸 Yearbook collage</span>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Yearbook Project – Built with Django</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Inside the yearbook</h2>
+                <p>What makes this edition special</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="{% static 'icons/student-male-female.png' %}" alt="male and female student icon">
+                    </div>
+                    <h3>Student profiles</h3>
+                    <p>Every face, every story. Discover your classmates' journeys.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="{% static 'icons/trophy.png' %}" alt="trophy icon">
+                    </div>
+                    <h3>Top moments</h3>
+                    <p>Relive the sports day, class activities, and unforgettable events.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="{% static 'icons/airplane.png' %}" alt="airplane icon">
+                    </div>
+                    <h3>Memory wall</h3>
+                    <p>Leave a note, share a photo – build the collective album.</p>
+                </div>
+            </div>
         </div>
-    </footer>
-</body>
-</html> 
+    </section>
+
+    <!-- Recent memories preview -->
+    <section class="memories-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent memories</h2>
+                <p>Latest from your classmates</p>
+            </div>
+            <div class="memories-grid">
+                <!-- dynamic content later -->
+                <div class="memory-card">
+                    <div class="memory-img placeholder-img"></div>
+                    <div class="memory-content">
+                        <h4>Science fair 2026</h4>
+                        <p>Amazing projects and crazy experiments! 🧪</p>
+                        <span class="memory-meta">– Sarah J., 2h ago</span>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-img placeholder-img"></div>
+                    <div class="memory-content">
+                        <h4>Last home game</h4>
+                        <p>Cheering loud until the final whistle. #spirit</p>
+                        <span class="memory-meta">– Marcus T., yesterday</span>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-img placeholder-img"></div>
+                    <div class="memory-content">
+                        <h4>Study group vibes</h4>
+                        <p>Finals are tough, but pizza and friends help.</p>
+                        <span class="memory-meta">– Emily C., 3 days ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="#" class="btn-outline">View all memories</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

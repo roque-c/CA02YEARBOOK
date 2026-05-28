@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Yearbook 2026{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&display=swap" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'images/cadmus-logo.png' %}" alt="cadmus-logo" height="40"></a>
+                <h2>Yearbook<span class="accent">2026</span></h2>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+                    <li><a href="#">Class of 2026</a></li>
+                    <li><a href="#">Memories</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Teachers</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle">☰</div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Page-specific content goes here -->
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <h3>CA02 Yearbook2026</h3>
+                <p>Preserving our legacy, one pixel at a time.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick links</h4>
+                <ul>
+                    <li><a href="#">Class of 2026</a></li>
+                    <li><a href="#">Memories</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <!-- optional social block 
+             <div class="footer-social">
+                <h4>Follow us</h4>
+                <div class="social-icons">
+                    <a href="#">📷 IG</a>
+                    <a href="#">🐦 X</a>
+                    <a href="#">📘 FB</a>
+                </div>
+            </div>-->
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; CA02 2026 Yearbook Project – Built with Django</p>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
