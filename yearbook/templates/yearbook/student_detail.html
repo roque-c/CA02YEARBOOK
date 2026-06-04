@@ -1,0 +1,15 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | Home{% endblock %}
+
+{% block content %}
+
+<section>
+
+        <h2> {{student.first_name}} {{student.last_name}} </h2>
+        <p>{{student.biography}}</p>
+        <p><i>{{student.quote}}</i></p>
+        <p><b>{{student.song}}</b></p>
+      </section>
+{% endblock %}

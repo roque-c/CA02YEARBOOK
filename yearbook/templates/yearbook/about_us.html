@@ -1,0 +1,42 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | About us{% endblock %}
+
+{% block content %}
+<!-- Features Section -->
+
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Inside the yearbook</h2>
+                <p>What makes this edition special</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="{% static 'icons/student-male-female.png' %}" alt="male and female student icon">
+                    </div>
+                    <h3>Student profiles</h3>
+                    <p>Every face, every story. Discover your classmates' journeys.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="{% static 'icons/trophy.png' %}" alt="trophy icon">
+                    </div>
+                    <h3>Top moments</h3>
+                    <p>Relive the sports day, class activities, and unforgettable events.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="{% static 'icons/airplane.png' %}" alt="airplane icon">
+                    </div>
+                    <h3>Memory wall</h3>
+                    <p>Leave a note, share a photo – build the collective album.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %} 

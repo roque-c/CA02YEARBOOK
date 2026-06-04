@@ -10,7 +10,7 @@ from .models import Memory, Student, Teacher, Event, EventImage
 #Register your models here.
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('last_name', 'first_name','date_of_birth','biography', 'quote', 'song')
+    list_display = ('last_name', 'first_name','date_of_birth', 'biography', 'quote', 'song')
     list_filter = ('first_name','last_name')
 
     fieldsets =(
@@ -18,7 +18,7 @@ class StudentAdmin(admin.ModelAdmin):
             'fields':('first_name','last_name','date_of_birth')
         }),
         ('About',{
-            'fields': ('biography','quote','song')
+            'fields': ('profile_picture', 'biography','quote','song')
         })
     )
 admin.site.register(Student, StudentAdmin)
