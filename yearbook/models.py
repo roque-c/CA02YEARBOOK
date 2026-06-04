@@ -86,10 +86,12 @@ class Event(models.Model):
         """Returns the URL to access a detail record for this event."""
         return reverse('event-detail', args=[str(self.id)])
 
+def event_image_path(instance, filename):
+    return f'event_gallery/event_{instance.event.id}/{filename}'
 
 class EventImage(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_images')
-    image = models.ImageField(upload_to='event_gallery/')
+    image = models.ImageField(upload_to=event_image_path)
     caption = models.CharField(max_length=200, blank=True)
     
     def __str__(self):

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | YB events{% endblock %}
+
+{% block content %}
+
+{% if event_list %}
+    {% for event in event_list %}
+        <h1>{{ event.name }}</h1>
+
+        {% for img in event.event_images.all %}
+            <img src="{{ img.image.url }}" alt="{{ img.caption }}">
+        {% endfor %}
+
+    {% endfor %}
+{% else %}
+    <h3>No events to display</h3>
+{% endif %}
+
+{% endblock %}
