@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "yearbook/base.html" %}
 {% load static %}
 
 {% block title %}Yearbook 2026 | Home{% endblock %}
@@ -11,7 +11,7 @@
                 <h1>Your story.<br>Our <span class="gradient-text">memories.</span></h1>
                 <p class="hero-sub">Class of 2026 – celebrate every moment, every friendship, every laugh. This digital yearbook captures your journey as Seniors at Cadmus Academies, preserved for generations to come.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn-primary btn-large">Explore the yearbook</a>
+                    <a href="{% url 'about' %}" class="btn-primary btn-large">Explore the yearbook</a>
                     <a href="#" class="btn-outline btn-large">Add your memory</a>
                 </div>
             </div>
@@ -23,40 +23,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Inside the yearbook</h2>
-                <p>What makes this edition special</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="{% static 'icons/student-male-female.png' %}" alt="male and female student icon">
-                    </div>
-                    <h3>Student profiles</h3>
-                    <p>Every face, every story. Discover your classmates' journeys.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="{% static 'icons/trophy.png' %}" alt="trophy icon">
-                    </div>
-                    <h3>Top moments</h3>
-                    <p>Relive the sports day, class activities, and unforgettable events.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="{% static 'icons/airplane.png' %}" alt="airplane icon">
-                    </div>
-                    <h3>Memory wall</h3>
-                    <p>Leave a note, share a photo – build the collective album.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recent memories preview -->
+        <!-- Recent memories preview -->
     <section class="memories-preview">
         <div class="container">
             <div class="section-header">

@@ -1,0 +1,27 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | About us{% endblock %}
+
+{% block content %}
+{% if student_list%}
+     {% for student in student_list%}
+     <img src="{{student.student.profile_picture}}"
+         alt="{{ student.first_name }} {{ student.last_name }}" width = 200>     
+      <br>
+      <h4><a href="{%  url 'student-detail' student.pk %}">{{student.first_name}}{{student.last_name}}</a></h4>   }
+         <!--
+    
+      <section>
+
+        <h2> {{student.first_name}} {{student.last_name}} </h2>
+        <p>{{student.biography}}</p>
+        <p><i>{{student.quote}}</i></p>
+        <p><b>{{student.song}}</b></p>
+      </section>-->
+
+      {% endfor %}
+  {% else %}
+    <p>There are no students in the database.</p>
+  {% endif %}
+{% endblock %}

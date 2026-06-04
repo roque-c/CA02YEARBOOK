@@ -26,7 +26,8 @@ class Student(models.Model):
     biography = models.TextField(max_length=2000, help_text="Enter a brief Biography of the student, including future aspirations")
     quote = models.CharField(max_length=500, help_text="enter a quote that represents you", null=True)
     song = models.CharField(max_length= 100, help_text="enter a song that represents your senior year", null=True)
-    
+    profile_picture = models.ImageField(upload_to="memory_gallery/", max_length=100,null=True, blank = True)
+   
     class Meta:
         ordering = ['last_name', 'first_name']
         
