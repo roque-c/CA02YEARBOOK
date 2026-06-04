@@ -146,7 +146,7 @@ h3 {
     transition: color 0.2s;
     background-color: transparent;
     padding: 0.5rem 0.75rem;
-    border-radius: 2rem;
+    border-radius: 3rem;
     transition: background-color 0.4s ease;
 }
 
@@ -205,6 +205,25 @@ h3 {
     cursor: pointer;
 }
 
+.student-list{
+        max-width: 1280px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+/* Hero inside student list */
+.student-list .hero-content h1 {
+    text-align: center;
+    color: var(--color-primary)
+}
+.class-motto{
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: "Playwrite GB J", cursive;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
 /* Hero */
 .hero {
     padding: 4rem 0 5rem;
@@ -389,6 +408,86 @@ h3 {
     font-size: 0.8rem;
     color: var(--color-text-muted);
 }
+/* Polaroid card styles */
+
+.student-gallery {
+  border-top: 20rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.polaroid-card {
+  background: var(--color-white);
+  padding: 0.8rem 0.8rem 1.2rem 0.8rem;
+  border-radius: 4px;               /* slight rounding, classic Polaroid */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  /* Optional: subtle rotation for each card (randomised via JS or nth-child) */
+}
+
+/* Slight lift & rotation on hover */
+.polaroid-card:hover {
+  transform: translateY(-6px) rotate(1deg);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Photo container – forces consistent aspect ratio */
+.polaroid-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* square like a classic instant photo */
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+  background-color: var(--color-bg-gray);
+}
+
+.polaroid-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* crop nicely to square */
+  display: block;
+}
+
+/* Caption area – like handwritten label */
+.polaroid-caption {
+  font-family: "Playwrite AU VIC Guides", cursive;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.3rem 0 0.2rem;
+  border-top: 1px solid var(--color-border-card);
+  margin-top: 0.2rem;
+  color:var(--color-text-secondary) ;
+}
+
+.polaroid-caption a {
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: color 0.2s;
+}
+
+.polaroid-caption a:hover {
+  color: var(--color-nav-hover-text);
+  text-decoration: underline;
+}
+
+/* Optional: random rotation for a more organic Polaroid collage */
+.polaroid-card:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+.polaroid-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+.polaroid-card:nth-child(3n) {
+  transform: rotate(2deg);
+}
+.polaroid-card:hover {
+  transform: translateY(-6px) rotate(0deg); /* reset rotation on hover for clarity */
+}
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -406,5 +505,18 @@ h3 {
     }
     .container {
         padding: 0 1.5rem;
+    }
+     .polaroid-card {
+        padding: 0.5rem 0.5rem 0.8rem;
+    }
+     .polaroid-caption {
+    font-size: 0.9rem;
+    }
+     .student-list {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+     .student-list .hero-content h1 {
+        font-size: 2rem;
     }
 }
