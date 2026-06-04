@@ -6,7 +6,7 @@ class Memory(models.Model):
     name = models.CharField(max_length=100, help_text="Enter submitter's name", null=False)
     email = models.EmailField(max_length=254, null = False)
     text = models.TextField(max_length=1000, help_text="Enter a brief description of the memory you wish to share")
-    image = models.ImageField(upload_to="memory_gallery/", max_length=100,null=True, blank = True)
+    image = models.ImageField(upload_to="students_gallery/", max_length=100,null=True, blank = True)
     pub_date = models.DateTimeField("date published")
 
     class Meta:
@@ -87,10 +87,12 @@ class Event(models.Model):
         """Returns the URL to access a detail record for this event."""
         return reverse('event-detail', args=[str(self.id)])
 
+def event_image_path(instance, filename):
+    return f'event_gallery/event_{instance.event.id}/{filename}'
 
 class EventImage(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_images')
-    image = models.ImageField(upload_to='event_gallery/')
+    image = models.ImageField(upload_to=event_image_path)  
     caption = models.CharField(max_length=200, blank=True)
     
     def __str__(self):
