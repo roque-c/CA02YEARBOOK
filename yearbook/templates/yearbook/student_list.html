@@ -1,7 +1,7 @@
 {% extends "yearbook/base.html" %}
 {% load static %}
 
-{% block title %}Yearbook 2026 | About us{% endblock %}
+{% block title %}Yearbook 2026 | Our Students{% endblock %}
 
 {% block content %}
 <main class="student-list">
@@ -23,7 +23,7 @@
         {% endif %}
       </div>
       <div class="polaroid-caption">
-        <a href="{% url 'student-detail' student.pk %}">
+        <a href="{% url 'students' student.pk %}">
           {{ student.first_name }} {{ student.last_name }}
         </a>
       </div>
