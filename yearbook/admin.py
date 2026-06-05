@@ -18,7 +18,7 @@ class StudentAdmin(admin.ModelAdmin):
             'fields':('first_name','last_name','date_of_birth')
         }),
         ('About',{
-            'fields': ('profile_picture', 'biography','quote','song')
+            'fields': ('profile_picture', 'biography','future_plans', 'quote','song')
         })
     )
 admin.site.register(Student, StudentAdmin)

@@ -23,7 +23,7 @@
         {% endif %}
       </div>
       <div class="polaroid-caption">
-        <a href="{% url 'students' student.pk %}">
+        <a href="{% url 'student-detail' student.pk %}">
           {{ student.first_name }} {{ student.last_name }}
         </a>
       </div>

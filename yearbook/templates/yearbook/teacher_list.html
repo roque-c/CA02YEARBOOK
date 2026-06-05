@@ -1,0 +1,37 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | Teachers{% endblock %}
+
+{% block content %}
+<main class="teacher-list-page">
+  <section class="hero-content" style="text-align: center; margin-bottom: 2rem;">
+    <h1>Our Dedicated Teachers</h1>
+    <p class="hero-sub">The mentors who guided the Class of 2026 every step of the way.</p>
+  </section>
+
+  {% if teacher_list %}
+    <div class="teacher-grid feature-grid">
+      {% for teacher in teacher_list %}
+        <div class="teacher-card">
+          <div class="teacher-card-image">
+            {# If you later add a profile_picture field, use it; otherwise placeholder #}
+            {% if teacher.profile_picture %}
+              <img src="{{ teacher.profile_picture.url }}" alt="{{ teacher.get_title_display }} {{ teacher.last_name }}">
+            {% else %}
+              <img src="{% static 'images/teacher_placeholder.png' %}" alt="Teacher placeholder">
+            {% endif %}
+          </div>
+          <div class="teacher-card-content">
+            <h3>{{ teacher.title }} {{ teacher.first_name }} {{ teacher.last_name }}</h3>
+            <p>{{ teacher.description }}</p>
+            <a href="{% url 'teacher-detail' teacher.pk %}" class="btn-outline btn-sm">Learn more →</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="no-teachers">No teachers have been added yet.</p>
+  {% endif %}
+</main>
+{% endblock %}

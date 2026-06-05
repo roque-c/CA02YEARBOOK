@@ -12,7 +12,7 @@
                 <p class="hero-sub">Class of 2026 – celebrate every moment, every friendship, every laugh. This digital yearbook captures your journey as Seniors at Cadmus Academies, preserved for generations to come.</p>
                 <div class="hero-buttons">
                     <a href="{% url 'about' %}" class="btn-primary btn-large">Explore the yearbook</a>
-                    <a href="#" class="btn-outline btn-large">Add your memory</a>
+                    <a href="{% url 'add-memory' %}" class="btn-outline btn-large">Add your memory</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -23,76 +23,39 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>Inside the yearbook</h2>
-                <p>What makes this edition special</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="{% static 'icons/student-male-female.png' %}" alt="male and female student icon">
-                    </div>
-                    <h3>Student profiles</h3>
-                    <p>Every face, every story. Discover your classmates' journeys.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="{% static 'icons/trophy.png' %}" alt="trophy icon">
-                    </div>
-                    <h3>Top moments</h3>
-                    <p>Relive sport days, class activities, and unforgettable events.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="{% static 'icons/airplane.png' %}" alt="airplane icon">
-                    </div>
-                    <h3>Memory wall</h3>
-                    <p>Leave a note, share a photo – build the collective album.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
         <!-- Recent memories preview -->
-    <section class="memories-preview">
-        <div class="container">
-            <div class="section-header">
-                <h2>Recent memories</h2>
-                <p>Latest from your classmates</p>
-            </div>
-            <div class="memories-grid">
-                <!-- dynamic content later -->
-                <div class="memory-card">
-                    <div class="memory-img placeholder-img"></div>
-                    <div class="memory-content">
-                        <h4>Science fair 2026</h4>
-                        <p>Amazing projects and crazy experiments! 🧪</p>
-                        <span class="memory-meta">– Sarah J., 2h ago</span>
-                    </div>
-                </div>
-                <div class="memory-card">
-                    <div class="memory-img placeholder-img"></div>
-                    <div class="memory-content">
-                        <h4>Last home game</h4>
-                        <p>Cheering loud until the final whistle. #spirit</p>
-                        <span class="memory-meta">– Marcus T., yesterday</span>
-                    </div>
-                </div>
-                <div class="memory-card">
-                    <div class="memory-img placeholder-img"></div>
-                    <div class="memory-content">
-                        <h4>Study group vibes</h4>
-                        <p>Finals are tough, but pizza and friends help.</p>
-                        <span class="memory-meta">– Emily C., 3 days ago</span>
-                    </div>
-                </div>
-            </div>
-            <div class="view-all">
-                <a href="#" class="btn-outline">View all memories</a>
-            </div>
+   <section class="memories-preview">
+    <div class="container">
+        <div class="section-header">
+            <h2>Recent memories</h2>
+            <p>Latest from your classmates</p>
         </div>
-    </section>
+        <div class="memories-grid">
+            {% if latest_memories %}
+                {% for memory in latest_memories %}
+                    <div class="memory-card">
+                        <!-- Memory image (if exists) -->
+                        {% if memory.image %}
+                            <img src="{{ memory.image.url }}" alt="{{ memory.title }}" class="memory-img">
+                        {% else %}
+                            <div class="memory-img placeholder-img"></div>
+                        {% endif %}
+                        <div class="memory-content">
+                            <h4>{{ memory.title|default:"Untitled memory" }}</h4>
+                            <p>{{ memory.text|truncatewords:15 }}</p>
+                            <span class="memory-meta">– {{ memory.name }}, {{ memory.pub_date|timesince }} ago</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No memories yet. Be the first to share!</p>
+            {% endif %}
+        </div>
+        <div class="view-all">
+            <a href="{% url 'memories' %}" class="btn-outline">View all memories</a>
+        </div>
+    </div>
+</section>
 {% endblock %}
