@@ -1,0 +1,135 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | {{ memory.title|default:"Memory" }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* Memory detail specific styles */
+  .memory-detail {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--color-white);
+    border-radius: 2rem;
+    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+    border: 1px solid var(--color-border-card);
+  }
+
+  .memory-detail-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-border-card);
+  }
+
+  .memory-detail-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .memory-meta-info {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .memory-meta-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .memory-image {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .memory-image img {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border: 1px solid var(--color-border-card);
+  }
+
+  .memory-placeholder {
+    background: var(--gradient-image-placeholder);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.5rem;
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+  }
+
+  .memory-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    margin: 2rem 0;
+    padding: 0 1rem;
+    white-space: pre-wrap;
+  }
+
+  .memory-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-card);
+  }
+
+  @media (max-width: 640px) {
+    .memory-detail {
+      padding: 1rem;
+      margin: 1rem;
+    }
+    .memory-detail-header h1 {
+      font-size: 1.8rem;
+    }
+    .memory-text {
+      font-size: 1rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="memory-detail">
+  <div class="memory-detail-header">
+    <h1>{{ memory.title|default:"Untitled Memory" }}</h1>
+    <div class="memory-meta-info">
+      <span>📝 {{ memory.name }}</span>
+      <span>📅 {{ memory.pub_date|date:"F j, Y \a\t g:i A" }}</span>
+      <span>✉️ <a href="mailto:{{ memory.email }}" style="color: var(--color-primary);">{{ memory.email }}</a></span>
+    </div>
+  </div>
+
+  {% if memory.image %}
+    <div class="memory-image">
+      <img src="{{ memory.image.url }}" alt="{{ memory.title }}">
+    </div>
+  {% else %}
+    <div class="memory-placeholder">
+     No image uploaded
+    </div>
+  {% endif %}
+
+  <div class="memory-text">
+    {{ memory.text|linebreaks }}
+  </div>
+
+  <div class="memory-actions">
+    <a href="{% url 'memories' %}" class="btn-outline">← Back to all memories</a>
+    <a href="{% url 'add_memory' %}" class="btn-primary">Share your own</a>
+  </div>
+</main>
+{% endblock %}

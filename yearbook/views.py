@@ -43,6 +43,11 @@ def add_memory(request):
 
 class MemoryListView(generic.ListView):
     model = Memory
+    ordering = ['-pub_date']
+    paginate_by = 12   # optional: show 12 memories per page
+
+class MemoryDetailView(generic.DetailView):
+    model = Memory
     
 class TeacherListView(generic.ListView):
     model = Teacher
