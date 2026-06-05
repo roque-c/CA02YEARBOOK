@@ -92,7 +92,7 @@ def event_image_path(instance, filename):
 
 class EventImage(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_images')
-    image = models.ImageField(upload_to=event_image_path)  
+    image = models.ImageField(upload_to=event_image_path)
     caption = models.CharField(max_length=200, blank=True)
     
     def __str__(self):
