@@ -15,9 +15,6 @@ class EventListView(generic.ListView):
     model = Event
 
 
-
-
-
 def about(request):
     return render(request, 'yearbook/about_us.html')
 
