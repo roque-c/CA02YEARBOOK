@@ -11,5 +11,6 @@ urlpatterns = [
     path('teachers/', views.TeacherListView.as_view(), name='teachers'),
     path('teachers/<int:pk>', views.TeacherDetailView.as_view(), name='teacher-detail'),
     path('add_memory/', views.add_memory, name='add_memory'),
-    path('memory-wall/', views.MemoryListView.as_view(), name='memories')
+    path('memory_wall/', views.MemoryListView.as_view(), name='memories'),
+    path('memory_wall/<int:pk>', views.MemoryDetailView.as_view(), name='memory-detail')
 ]

@@ -171,7 +171,7 @@
 <div class="memory-wall-container">
   <!-- Left sidebar: recent memories -->
   <aside class="memories-sidebar">
-    <h2>📖 Recent Memories</h2>
+    <h2>Recent Memories</h2>
     {% if memories %}
       {% for memory in memories %}
         <div class="memory-item">
@@ -188,6 +188,7 @@
         No memories yet. Be the first to share!
       </p>
     {% endif %}
+    <a href="{% url 'memories' %}" class="btn-outline"> all memories</a>
   </aside>
 
   <!-- Right side: submission form -->
@@ -195,7 +196,7 @@
     <h1>Share a <span class="gradient-text">Memory</span></h1>
     {% if success %}
       <div class="success-message">
-        ✅ Thank you! Your memory will appear on the wall.
+        Thank you! Your memory will appear on the wall.
       </div>
     {% endif %}
     <form method="post" enctype="multipart/form-data">

@@ -8,30 +8,30 @@
 
     <section class="features">
         <div class="container">
-            <div class="section-header">
-                <h2>Inside the yearbook</h2>
-                <p>What makes this edition special</p>
+            <div class="hero-content" style="text-align: center; margin-bottom: 2rem;">
+                <h1>Inside the yearbook</h1>
+                <p class="class-motto">What makes this edition special</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-img">
                         <img src="{% static 'icons/student-male-female.png' %}" alt="male and female student icon">
                     </div>
-                    <h3>Student profiles</h3>
+                    <a href="{% url 'students' %}"><h3>Student profiles</h3></a>
                     <p>Every face, every story. Discover your classmates' journeys.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-img">
                         <img src="{% static 'icons/trophy.png' %}" alt="trophy icon">
                     </div>
-                    <h3>Top moments</h3>
+                    <a href="{% url 'events'%}"><h3>Top moments</h3></a>
                     <p>Relive the sports day, class activities, and unforgettable events.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-img">
                         <img src="{% static 'icons/airplane.png' %}" alt="airplane icon">
                     </div>
-                    <h3>Memory wall</h3>
+                    <a href="{% url 'add_memory' %}"><h3>Memory wall</h3></a>
                     <p>Leave a note, share a photo – build the collective album.</p>
                 </div>
             </div>
