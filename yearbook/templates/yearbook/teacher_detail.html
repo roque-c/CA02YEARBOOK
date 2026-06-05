@@ -1,0 +1,27 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | {{ teacher.title }} {{ teacher.last_name }}{% endblock %}
+
+{% block content %}
+<main class="container" style="padding: 2rem 0;">
+  <div class="teacher-detail">
+    <div class="teacher-detail-header">
+      {% if teacher.profile_picture %}
+        <img src="{{ teacher.profile_picture.url }}" alt="{{ teacher.title }} {{ teacher.last_name }}" class="teacher-detail-img">
+      {% else %}
+        <img src="{% static 'images/teacher_placeholder.png' %}" alt="Teacher photo" class="teacher-detail-img">
+      {% endif %}
+      <div class="teacher-detail-info">
+        <h1>{{ teacher.title }} {{ teacher.first_name }} {{ teacher.last_name }}</h1>
+        <p class="teacher-role">{{ teacher.description }}</p>
+      </div>
+    </div>
+    <div class="teacher-bio">
+      <h3>About {{ teacher.first_name }}</h3>
+      <p>More detailed biography could go here – you can extend the model with a `bio` field.</p>
+    </div>
+    <a href="{% url 'teachers' %}" class="btn-outline">← Back to all teachers</a>
+  </div>
+</main>
+{% endblock %}

@@ -128,18 +128,18 @@
   <!-- Two-column info panel (bio + extras) -->
   <div class="info-grid">
     <div class="info-card">
-      <h3>📖 Biography</h3>
+      <h3>Biography</h3>
       <p>{{ student.biography|default:"This senior hasn't written a bio yet – but they're definitely awesome!" }}</p>
     </div>
     <div class="info-card">
-      <h3>✨ Future Plans</h3>
+      <h3>Future Plans</h3>
       <p>{{ student.future_plans|default:"Still exploring possibilities – the sky's the limit!" }}</p>
     </div>
   </div>
 
   <!-- Featured quote & song -->
   <div class="pull-quote">
-    <p>“{{ student.quote|default:"Dream big, work hard, stay humble." }}”</p>
+    <p>{{ student.quote|default:"Dream big, work hard, stay humble." }}</p>
     <small>— Favorite quote</small>
   </div>
   <div class="pull-quote" style="background: var(--color-footer-bg); color: white; margin-top: -1rem;">
@@ -150,7 +150,7 @@
   <!-- Additional fields (if you have them) -->
   {% if student.favorite_memory %}
   <div class="info-card" style="margin-top: 1rem;">
-    <h3>📸 Favorite Yearbook Memory</h3>
+    <h3>Favorite Yearbook Memory</h3>
     <p>{{ student.favorite_memory }}</p>
   </div>
   {% endif %}

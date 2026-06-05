@@ -24,9 +24,9 @@
                 <ul class="nav-links">
                     <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
                     <li><a href="{% url 'students' %}">Class of 2026</a></li>
-                    <li><a href="#">Memory Wall</a></li>
+                    <li><a href="{% url 'memories' %}">Memory Wall</a></li>
                     <li><a href="{% url 'events' %}">Year in Review</a></li>
-                    <li><a href="#">Mentors & Teachers</a></li>
+                    <li><a href="{% url 'teachers' %}">Mentors & Teachers</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                 </ul>
             </nav>

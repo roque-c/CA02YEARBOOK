@@ -1,0 +1,234 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | Memory Wall{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* Memory wall specific layout */
+  .memory-wall-container {
+    max-width: 1280px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  /* Left sidebar – list of memories */
+  .memories-sidebar {
+    flex: 1.2;
+    min-width: 280px;
+    background: var(--color-white);
+    border-radius: 1.5rem;
+    padding: 1.8rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    height: fit-content;
+    border: 1px solid var(--color-border-card);
+  }
+
+  .memories-sidebar h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+    border-left: 4px solid var(--color-primary);
+    padding-left: 1rem;
+  }
+
+  .memory-item {
+    background: var(--color-body-bg);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1.2rem;
+    transition: transform 0.2s;
+  }
+
+  .memory-item:hover {
+    transform: translateX(5px);
+    background: var(--color-bg-button-hover);
+  }
+
+  .memory-name {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 1rem;
+  }
+
+  .memory-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin: 0.2rem 0;
+  }
+
+  .memory-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--color-text-primary);
+    margin-top: 0.5rem;
+  }
+
+  .memory-date {
+    font-size: 0.7rem;
+    color: var(--color-memory-meta);
+    margin-top: 0.5rem;
+  }
+
+  /* Right side – form */
+  .memory-form-section {
+    flex: 2;
+    background: var(--color-white);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid var(--color-border-card);
+  }
+
+  .memory-form-section h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary);
+  }
+
+  .memory-form-section h1 .gradient-text {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group input[type="file"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background: var(--color-body-bg);
+    transition: border 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-shadow);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .btn-submit {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+  }
+
+  .btn-submit:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-2px);
+  }
+
+  .success-message {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .errorlist {
+    color: #dc2626;
+    font-size: 0.8rem;
+    list-style: none;
+    margin-top: 0.3rem;
+  }
+
+  @media (max-width: 768px) {
+    .memory-wall-container {
+      flex-direction: column;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="memory-wall-container">
+  <!-- Left sidebar: recent memories -->
+  <aside class="memories-sidebar">
+    <h2>📖 Recent Memories</h2>
+    {% if memories %}
+      {% for memory in memories %}
+        <div class="memory-item">
+          <div class="memory-name">{{ memory.name }}</div>
+          {% if memory.title %}
+            <div class="memory-title">“{{ memory.title }}”</div>
+          {% endif %}
+          <div class="memory-text">{{ memory.text|truncatewords:20 }}</div>
+          <div class="memory-date">{{ memory.pub_date|date:"M d, Y · H:i" }}</div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p style="color: var(--color-text-muted); text-align: center; padding: 2rem 0;">
+        No memories yet. Be the first to share!
+      </p>
+    {% endif %}
+  </aside>
+
+  <!-- Right side: submission form -->
+  <div class="memory-form-section">
+    <h1>Share a <span class="gradient-text">Memory</span></h1>
+    {% if success %}
+      <div class="success-message">
+        ✅ Thank you! Your memory will appear on the wall.
+      </div>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="form-group">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {{ form.name.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.title.label_tag }}
+        {{ form.title }}
+        {{ form.title.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.text.label_tag }}
+        {{ form.text }}
+        {{ form.text.errors }}
+      </div>
+      <div class="form-group">
+        {{ form.image.label_tag }}
+        {{ form.image }}
+        {{ form.image.errors }}
+        <small style="color: var(--color-text-muted);">Optional – upload a photo with your memory.</small>
+      </div>
+      <button type="submit" class="btn-submit">Post Memory →</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -6,7 +6,7 @@ class Memory(models.Model):
     name = models.CharField(max_length=100, help_text="Enter submitter's name", null=False)
     email = models.EmailField(max_length=254, null = False)
     text = models.TextField(max_length=1000, help_text="Enter a brief description of the memory you wish to share")
-    image = models.ImageField(upload_to="students_gallery/", max_length=100,null=True, blank = True)
+    image = models.ImageField(upload_to="memory_gallery/", max_length=100,null=True, blank = True)
     pub_date = models.DateTimeField("date published")
 
     class Meta:
@@ -24,9 +24,10 @@ class Student(models.Model):
     last_name = models.CharField(max_length=100, null=False)
     date_of_birth = models.DateField(null=True, blank=True)
     biography = models.TextField(max_length=2000, help_text="Enter a brief Biography of the student, including future aspirations")
+    future_plans = models.TextField(max_length=500, null = True)
     quote = models.CharField(max_length=500, help_text="enter a quote that represents you", null=True)
     song = models.CharField(max_length= 100, help_text="enter a song that represents your senior year", null=True)
-    profile_picture = models.ImageField(upload_to="memory_gallery/", max_length=100,null=True, blank = True)
+    profile_picture = models.ImageField(upload_to="students_gallery/", max_length=100,null=True, blank = True)
    
     class Meta:
         ordering = ['last_name', 'first_name']
@@ -45,6 +46,8 @@ class Teacher(models.Model):
     first_name = models.CharField(max_length=100, null=False)
     last_name = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=200,help_text="enter a brief description of the teacher's role for the seniors", blank=False)
+    profile_picture = models.ImageField(upload_to='teachers/', blank=True, null=True)
+    biography = models.TextField(max_length=2000, help_text="Enter a brief Biography of the teacher, including future aspirations", null=True)
 
 
     class Meta:

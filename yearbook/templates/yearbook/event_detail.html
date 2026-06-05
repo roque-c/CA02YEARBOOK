@@ -1,0 +1,33 @@
+{% extends "yearbook/base.html" %}
+{% load static %}
+
+{% block title %}Yearbook 2026 | {{ event.name }}{% endblock %}
+
+{% block content %}
+<main class="container" style="padding: 2rem 0;">
+  <div class="event-detail">
+    <h1>{{ event.name }}</h1>
+    <div class="event-detail-meta">
+      <span>{{ event.event_date|date:"F j, Y" }}</span>
+      <span class="event-type">{{ event.get_event_type_display }}</span>
+    </div>
+
+    {% if event.event_images.all %}
+      <div class="event-gallery">
+        {% for img in event.event_images.all %}
+          <img src="{{ img.image.url }}" alt="{{ img.caption|default:event.name }}">
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="event-placeholder-img"></div>
+    {% endif %}
+
+    <div class="event-description">
+      <h3>About this event</h3>
+      <p>{{ event.description|linebreaks }}</p>
+    </div>
+
+    <a href="{% url 'events' %}" class="btn-outline">← Back to all events</a>
+  </div>
+</main>
+{% endblock %}
