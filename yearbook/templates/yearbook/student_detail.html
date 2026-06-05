@@ -1,15 +1,164 @@
+>
+
 {% extends "yearbook/base.html" %}
 {% load static %}
 
-{% block title %}Yearbook 2026 | Home{% endblock %}
+{% block title %}Yearbook 2026 | {{ student.first_name }} {{ student.last_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* Additional detail-page specific tweaks */
+  .detail-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  .detail-photo {
+    flex: 0 0 280px;
+  }
+  .detail-photo .polaroid-card {
+    margin: 0;
+    padding: 0.8rem 0.8rem 1rem 0.8rem;
+  }
+  .detail-photo img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  .detail-title {
+    flex: 1;
+  }
+  .detail-title h1 {
+    font-size: 3rem;
+    margin-bottom: 0.25rem;
+  }
+  .grad-year {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  .info-card {
+    background: var(--color-white);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--color-border-card);
+  }
+  .info-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    border-left: 4px solid var(--color-primary);
+    padding-left: 0.75rem;
+  }
+  .pull-quote {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .pull-quote p {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .pull-quote small {
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+  .back-button {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  @media (max-width: 768px) {
+    .detail-hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{% endblock %}
 
 {% block content %}
+<main class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+  <!-- Hero section with photo and name -->
+  <div class="detail-hero">
+    <div class="detail-photo">
+      <div class="polaroid-card">
+        <div class="polaroid-photo">
+          {% if student.profile_picture %}
+            <img src="{{ student.profile_picture.url }}" alt="{{ student.first_name }} {{ student.last_name }}">
+          {% else %}
+            <img src="{% static 'images/boy_placeholder.jpg' %}" alt="No photo">
+          {% endif %}
+        </div>
+        <div class="polaroid-caption">
+          {{ student.first_name }} {{ student.last_name }}
+        </div>
+      </div>
+    </div>
+    <div class="detail-title">
+      <h1>{{ student.first_name }} {{ student.las_name }}</h1>
+      <div class="grad-year">
+        🎓 Class of 2026
+      </div>
+      <p class="bio-short">
+        {% if student.biography %}
+          {{ student.biography|truncatewords:30 }}
+        {% else %}
+          A proud senior at our school, making memories that last a lifetime.
+        {% endif %}
+      </p>
+    </div>
+  </div>
 
-<section>
+  <!-- Two-column info panel (bio + extras) -->
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>📖 Biography</h3>
+      <p>{{ student.biography|default:"This senior hasn't written a bio yet – but they're definitely awesome!" }}</p>
+    </div>
+    <div class="info-card">
+      <h3>✨ Future Plans</h3>
+      <p>{{ student.future_plans|default:"Still exploring possibilities – the sky's the limit!" }}</p>
+    </div>
+  </div>
 
-        <h2> {{student.first_name}} {{student.last_name}} </h2>
-        <p>{{student.biography}}</p>
-        <p><i>{{student.quote}}</i></p>
-        <p><b>{{student.song}}</b></p>
-      </section>
+  <!-- Featured quote & song -->
+  <div class="pull-quote">
+    <p>“{{ student.quote|default:"Dream big, work hard, stay humble." }}”</p>
+    <small>— Favorite quote</small>
+  </div>
+  <div class="pull-quote" style="background: var(--color-footer-bg); color: white; margin-top: -1rem;">
+    <p>🎵 “{{ student.song|default:"Don't Stop Believin'" }}”</p>
+    <small>Senior anthem / favorite song</small>
+  </div>
+
+  <!-- Additional fields (if you have them) -->
+  {% if student.favorite_memory %}
+  <div class="info-card" style="margin-top: 1rem;">
+    <h3>📸 Favorite Yearbook Memory</h3>
+    <p>{{ student.favorite_memory }}</p>
+  </div>
+  {% endif %}
+
+  <!-- Back button -->
+  <div class="back-button">
+    <a href="{% url 'students' %}" class="btn-outline btn-large">← Back to all seniors</a>
+  </div>
+</main>
 {% endblock %}
